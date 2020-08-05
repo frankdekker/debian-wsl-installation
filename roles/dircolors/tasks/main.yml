@@ -5,7 +5,7 @@
     dest: /etc/dircolors
     mode: '0444'
 
-- name: add dircolors to .bashrc
+- name: add dircolors to /etc/profile
   lineinfile:
     path: /etc/profile
     regexp: 'dircolors'
