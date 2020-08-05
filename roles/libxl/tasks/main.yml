@@ -27,7 +27,7 @@
     - 7.2
     - 7.4
   loop_control:
-    loop_var: php_version
+    loop_var: libxl_php_version
 
 - name: remove installation
   file:
