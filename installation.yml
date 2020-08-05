@@ -1,4 +1,4 @@
-- hosts: all
+- hosts: localhost
   roles:
     - roles/dircolors
     - role: sury-php7.0-7.4
@@ -13,4 +13,7 @@
     - role: sury-php7.0-7.4
       vars:
         php_version: 7.4
+    - role: composer
+       vars:
+         default_php_version: 7.1
     - roles/libxl

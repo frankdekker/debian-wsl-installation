@@ -1,0 +1,49 @@
+---
+
+- name: download composer
+  get_url:
+    url: https://getcomposer.org/installer
+    dest: /tmp/installer
+  tags: composer
+
+- name: install composer
+  shell: cat /tmp/installer | php7.0 -- --install-dir=/usr/local/bin
+  args:
+    creates: /usr/local/bin/composer.phar
+  tags: composer
+
+- name: make composer executable
+  file:
+    path: /usr/local/bin/composer.phar
+    mode: a+x
+    state: file
+  tags: composer
+
+- name: delete composer installer
+  file:
+    state: absent
+    path: /tmp/installer
+  tags:
+    - composer
+
+- name: create composer for specific php versions
+  template:
+    src: composer.j2
+    dest: "/usr/local/bin/composer{{ item }}"
+    mode: 0777
+  with_items:
+    - 7.0
+    - 7.1
+    - 7.2
+    - 7.4
+  tags:
+    - composer
+
+- name: create composer symlink to {{default_php_version}}
+  file:
+    src: "/usr/local/bin/composer{{default_php_version}}"
+    dest: "/usr/local/bin/composer"
+    state: "link"
+    force: yes
+  tags:
+    - composer

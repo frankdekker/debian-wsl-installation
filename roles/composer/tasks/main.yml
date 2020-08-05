@@ -1,0 +1,13 @@
+---
+
+- name: check if composer is present
+  stat: path="/usr/local/bin/composer.phar"
+  register: composer_stat
+  tags:
+    - composer
+
+- name: install composer
+  include: install.yml
+  when: composer_stat and composer_stat.stat.exists == false
+  tags:
+    - composer
