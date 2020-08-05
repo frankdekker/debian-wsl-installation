@@ -1,5 +1,8 @@
 - hosts: localhost
+  vars:
+    my_user: fdekker
   roles:
+    - {role: bashrc, tags: 'bashrc'}
     - {role: dircolors, tags: 'dircolors'}
     - {role: directories, tags: 'directories'}
     - {role: sury-php7.0-7.4, tags: 'php', vars: {php_version: 7.0}}

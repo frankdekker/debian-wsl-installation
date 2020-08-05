@@ -1,7 +1,7 @@
 ---
 
 - name: create directories
-  file: path="{{ item.path }}" state=directory mode="{{ item.mode }}" owner="fdekker"
+  file: path="{{ item.path }}" state=directory mode="{{ item.mode }}" owner="{{my_user}}" group="{{my_user}}"
   ignore_errors: yes
   with_items:
     - { path: '/DRS/',                                                                              mode: "0777" }

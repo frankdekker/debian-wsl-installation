@@ -1,0 +1,15 @@
+---
+
+- name: add custom PS1 to bashrc
+  lineinfile:
+    path: '/home/{{my_user}}/.bashrc
+    regexp: 'u@drwsl'
+    line:  "PS1='\u@drwsl:\W\$ '"
+
+- name: install bash_aliases
+  copy:
+    src: .bash_aliases
+    dest: '/home/{{my_user}}/.bash_aliases'
+    owner: '{{my_user}}'
+    group: '{{my_user}}'
+
