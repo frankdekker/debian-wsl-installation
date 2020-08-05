@@ -1,7 +1,8 @@
 #/bin/bash
 
 if (whoami != root)
-  die("Please run as root")
+  echo "Please run as root"
+  exit 1
 fi
 
 echo 'deb http://ppa.launchpad.net/ansible/ansible/ubuntu trusty main' > /etc/apt/sources.list.d/ansible.list
