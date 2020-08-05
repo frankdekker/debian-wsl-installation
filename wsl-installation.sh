@@ -13,4 +13,6 @@ apt-get -y install ansible
 rm  /etc/apt/sources.list.d/ansible.list
 
 # run ansible playbook
+INSTALL_DIR=$(dirname $(realpath "$0"))
+cd ${INSTALL_DIR}
 ansible-playbook installation.yml
