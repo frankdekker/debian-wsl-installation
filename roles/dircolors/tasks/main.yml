@@ -8,5 +8,5 @@
 - name: add dircolors to .bashrc
   lineinfile:
     path: /etc/profile
-    regexp: 'LS_COLORS'
-    line:  "eval $(dircolors -b $HOME/.LS_COLORS)"
+    regexp: 'dircolors'
+    line:  "eval $(dircolors -b /etc/dircolors)"
