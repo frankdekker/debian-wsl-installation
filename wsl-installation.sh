@@ -12,10 +12,5 @@ apt-get -y update
 apt-get -y install ansible
 rm  /etc/apt/sources.list.d/ansible.list
 
-
-# install git
-apt-get -y install git
-
-# clone debian installation
-git clone https://github.com/frankdekker/debian-wsl-installation.git
-cd debian-wsl-installation
+# run ansible playbook
+ansible-playbook installation.yml
