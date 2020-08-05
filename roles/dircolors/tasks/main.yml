@@ -1,7 +1,7 @@
 ---
 - name: Download dircolors from github
   get_url:
-    url: https://raw.githubusercontent.com/trapd00r/LS_COLORS/master/LS_COLORS
+    url: https://gist.githubusercontent.com/sgur/7b2501a8ed4e7b6ea2d710ca39ea4be3/raw/3fe491c059aed7ec664c5a9242a75e292f475794/.dircolors.wsl
     dest: /etc/dircolors
     mode: '0444'
 
