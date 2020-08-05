@@ -1,0 +1,16 @@
+---
+
+- name: check if lib excel is already installed
+  stat:
+    path: /etc/foo.conf
+  register: st
+
+
+- name: replace php version to {{php_version}}
+  replace:
+    path: /root/install_phpexcel_php7.sh
+    regexp: 'PHP_VERSION=([0-9.]+)'
+    replace: 'PHP_VERSION={{php_version}}'
+
+- name: install libxl for php {{php_version}}
+  shell: /root/install_phpexcel_php7.sh

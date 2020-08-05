@@ -1,0 +1,35 @@
+---
+
+- name: Install required packages
+  apt:
+    package:
+      - unzip
+      - tar
+      - wget
+      - php7.0-dev
+      - php7.1-dev
+      - php7.2-dev
+      - php7.4-dev
+    state: present
+    force: yes
+
+- name: download libxl installation script
+  get_url:
+    url: https://gist.githubusercontent.com/belgattitude/69d3245227d4cc284996e3f0a1bc0033/raw/cb1bcc0ce654fb6aa3c46eca0c9e7b42bc88c011/install_phpexcel_php72.sh
+    dest: /root/install_phpexcel_php7.sh
+    mode: '0700'
+
+- name: install libxl for phpversion
+  include_tasks: install.yml
+  loop:
+    - 7.0
+    - 7.1
+    - 7.2
+    - 7.4
+  loop_control:
+    loop_var: php_version
+
+- name: remove installation
+  file:
+    path: /etc/foo.txt
+    state: absent
