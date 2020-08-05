@@ -4,11 +4,13 @@
   apt: update_cache=yes
 
 - name: Install apt-transport and ca-certificates
-  apt: package={{ item }} state=present force=yes
-  with_items:
-  - apt-transport-https
-  - lsb-release
-  - ca-certificates
+  apt:
+    package:
+      - apt-transport-https
+      - lsb-release
+      - ca-certificates
+    state: present
+    force: yes
 
 - name: Download sury gpg
   get_url:
@@ -22,32 +24,35 @@
     path: /etc/apt/sources.list.d/php.list
     regexp: 'packages\.sury\.org'
     state: present
-    line: 'deb https://packages.sury.org/php/ stretch main'
+    line: 'deb https://packages.sury.org/php/ {{ansible_facts.distribution_release}} main'
 
 - name: Update apt cache.
-  apt: update_cache=yes cache_valid_time=86400
+  apt: update_cache=yes
 
 - name: Install php7-fpm
-  apt: package={{ item }} state=present force=yes
-  with_items:
-  - php7.0-mbstring
-  - php7.0-curl
-  - php7.0-mysql
-  - php7.0-opcache
-  - php7.0-json
-  - php7.0-xml
-  - php7.0-common
-  - php7.0-cli
-  - php7.0-fpm
-  - php7.0-cgi
-  - php7.0-gd
-  - php7.0-intl
-  - php7.0-soap
-  - php7.0-zip
-  - php7.0-xmlrpc
-  - libssl1.1
-  - php-common
-  - php-xdebug
+  apt:
+    package:
+      - php7.0-mbstring
+      - php7.0-curl
+      - php7.0-mysql
+      - php7.0-opcache
+      - php7.0-json
+      - php7.0-xml
+      - php7.0-common
+      - php7.0-cli
+      - php7.0-fpm
+      - php7.0-cgi
+      - php7.0-gd
+      - php7.0-intl
+      - php7.0-soap
+      - php7.0-zip
+      - php7.0-xmlrpc
+      - libssl1.1
+      - php-common
+      - php-xdebug
+    state: present
+    force: yes
+
 
 - name: custom.ini and xdebug.ini
   copy: src="{{ item.src }}" dest="{{ item.dest }}"

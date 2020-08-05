@@ -1,12 +1,21 @@
-#/bin/bash
+#!/bin/bash
 
-if (whoami != root)
-  echo "Please run as root"
-  exit 1
+if (( $EUID != 0 )); then
+    echo "Please run as root"
+    exit
 fi
 
+# install ansible
 echo 'deb http://ppa.launchpad.net/ansible/ansible/ubuntu trusty main' > /etc/apt/sources.list.d/ansible.list
 apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 93C4A3FD7BB9C367
 apt-get -y update
 apt-get -y install ansible
+rm  /etc/apt/sources.list.d/ansible.list
 
+
+# install git
+apt-get -y install git
+
+# clone debian installation
+git clone https://github.com/frankdekker/debian-wsl-installation.git
+cd debian-wsl-installation
