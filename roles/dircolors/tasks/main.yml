@@ -1,0 +1,12 @@
+---
+- name: Download dircolors from github
+  get_url:
+    url: https://raw.githubusercontent.com/trapd00r/LS_COLORS/master/LS_COLORS
+    dest: /etc/dircolors
+    mode: '0444'
+
+- name: add dircolors to .bashrc
+  lineinfile:
+    path: /etc/profile
+    regexp: 'LS_COLORS'
+    line:  "eval $(dircolors -b $HOME/.LS_COLORS)"
