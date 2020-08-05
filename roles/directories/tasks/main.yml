@@ -1,0 +1,22 @@
+---
+
+- name: create directories
+  file: path="{{ item.path }}" state=directory mode="{{ item.mode }}" owner="fdekker"
+  ignore_errors: yes
+  with_items:
+    - { path: '/DRS/',                                                                              mode: "0777" }
+    - { path: '/DRS/drcore/',                                                                       mode: "0777" }
+    - { path: '/DRS/company/',                                                                      mode: "0777" }
+
+
+- name: create symlinks
+  file: src="{{ item.src }}" dest="{{ item.dest }}" state="link" force="yes"
+  with_items:
+    - { src: '/mnt/c/drwsl/drs/drs',                                      dest: '/DRS/src-dev' }
+    - { src: '/mnt/c/drwsl/drs/drcore',                                   dest: '/DRS/drcore/development' }
+    - { src: '/DRS/drcore/development',                                   dest: '/DRS/drcore/src-dev' }
+    - { src: '/mnt/c/drwsl/drs/next',                                     dest: '/DRS/src-next' }
+    - { src: '/mnt/c/drwsl/drs/resources',                                dest: '/DRS/resources' }
+    - { src: '/mnt/c/drwsl/drs/drs-config',                               dest: '/DRS/company/dev' }
+
+
