@@ -6,8 +6,6 @@
       - unzip
       - tar
       - wget
-      - php7.0-dev
-      - php7.1-dev
       - php7.2-dev
       - php7.4-dev
     state: present
@@ -22,8 +20,6 @@
 - name: install libxl for phpversion
   include_tasks: install.yml
   loop:
-    - 7.0
-    - 7.1
     - 7.2
     - 7.4
   loop_control:

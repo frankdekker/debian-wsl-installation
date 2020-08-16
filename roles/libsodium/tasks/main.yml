@@ -1,0 +1,13 @@
+---
+
+- name: Install libsodium binary
+  apt:
+    package:
+      - libsodium-dev
+    state: present
+    force: yes
+
+- name: Install libsodium pecl
+  pear:
+    name: pecl/libsodium
+    state: present
