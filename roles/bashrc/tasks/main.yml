@@ -6,6 +6,12 @@
     regexp: 'u@drwsl'
     line:  "PS1='\\u@drwsl:\\W\\$ '"
 
+- name: add custom PS1 to bashrc
+  lineinfile:
+    path: '/home/{{my_user}}/.bashrc'
+    regexp: 'NO_COLOR'
+    line:  "export NO_COLOR=1"
+
 - name: install bash_aliases
   copy:
     src: .bash_aliases
